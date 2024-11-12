@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 @Entity
 @Getter
@@ -20,7 +20,7 @@ public class GoldenRaspberryAward {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int year;
+    private int year_g;
     private String title;
     private String studios;
     private String producers;
