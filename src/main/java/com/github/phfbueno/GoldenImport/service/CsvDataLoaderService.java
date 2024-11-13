@@ -64,7 +64,7 @@ public class CsvDataLoaderService {
         for (CSVRecord record : records) {
             GoldenRaspberryAward goldenRaspberryAward = new GoldenRaspberryAward();
 
-            goldenRaspberryAward.setYear_g(Integer.parseInt(record.get("year")));
+            goldenRaspberryAward.setYearMovie(Integer.parseInt(record.get("year")));
             goldenRaspberryAward.setTitle(record.get("title"));
             goldenRaspberryAward.setStudios(record.get("studios"));
             goldenRaspberryAward.setProducers(record.get("producers"));

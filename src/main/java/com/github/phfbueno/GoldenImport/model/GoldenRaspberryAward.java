@@ -20,7 +20,7 @@ public class GoldenRaspberryAward {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int year_g;
+    private int yearMovie;
     private String title;
     private String studios;
     private String producers;
