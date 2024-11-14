@@ -1,5 +1,6 @@
 package com.github.phfbueno.GoldenImport.controller;
 
+import com.github.phfbueno.GoldenImport.repository.GoldenRaspberryAwardRepository;
 import com.github.phfbueno.GoldenImport.service.AwardService;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public class AwardController {
 
     @Autowired
     private AwardService awardService;
+
+    public AwardController(GoldenRaspberryAwardRepository goldenRaspberryAwardRepository) {
+    }
 
     @GetMapping("/intervals")
     public ResponseEntity<Map<String, List<Map<String, Object>>>> getAwardIntervals() {

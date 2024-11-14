@@ -26,4 +26,6 @@ public class GoldenRaspberryAward {
     private String producers;
     private Boolean winner;
 
+    public GoldenRaspberryAward(int i, String s, String s1, String s2, boolean b) {
+    }
 }
