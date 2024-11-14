@@ -1,10 +1,14 @@
 package com.github.phfbueno.GoldenImport.service;
 
+import com.github.phfbueno.GoldenImport.config.DataInitializer;
 import com.github.phfbueno.GoldenImport.model.GoldenRaspberryAward;
 import com.github.phfbueno.GoldenImport.repository.GoldenRaspberryAwardRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,11 +21,16 @@ import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.List;
 
+@Slf4j
 @Service
 public class CsvDataLoaderService {
 
+    private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
+
     @Autowired
     private GoldenRaspberryAwardRepository goldenRaspberryAwardRepository;
+
+
 
     @Value("${csv.filepath}")
     private String filePath;
@@ -46,7 +55,7 @@ public class CsvDataLoaderService {
         File file = new File(fullPath);
 
         if (!file.exists()) {
-            System.out.println("Arquivo " + fullPath + " não encontrado. O sistema continuará sem importar os dados.");
+            logger.warn("Arquivo {} não encontrado. O sistema continuará sem importar os dados.", file.getPath());
             return;
         }
 

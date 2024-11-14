@@ -11,6 +11,9 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private CsvDataLoaderService csvDataLoaderService;
 
+    public DataInitializer() {
+    }
+
     @Override
     public void run(String... args) throws Exception {
 

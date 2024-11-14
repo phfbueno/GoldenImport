@@ -40,6 +40,51 @@ Essas configurações permitem que o sistema leia o arquivo CSV automaticamente 
 
 Isso permitirá o envio do arquivo diretamente para a aplicação, que irá processá-lo e salvar os dados no banco de dados.
 
+## Obtendo Informações de Intervalos de Prêmios
+
+Você pode realizar uma requisição GET para obter o produtor com o maior intervalo entre dois prêmios consecutivos, e também o produtor que obteve dois prêmios mais rapidamente.
+   
+      ```bash
+   GET http://localhost:8080/awards/intervals
+
+
+### Retorno Esperado
+
+O retorno será um JSON similar ao seguinte:
+
+      ```json
+   {
+     "min": [
+       {
+         "producer": "Producer 1",
+         "interval": 1,
+         "previousWin": 2008,
+         "followingWin": 2009
+       },
+       {
+         "producer": "Producer 2",
+         "interval": 1,
+         "previousWin": 2018,
+         "followingWin": 2019
+       }
+     ],
+     "max": [
+       {
+         "producer": "Producer 1",
+         "interval": 99,
+         "previousWin": 1900,
+         "followingWin": 1999
+       },
+       {
+         "producer": "Producer 2",
+         "interval": 99,
+         "previousWin": 2000,
+         "followingWin": 2099
+       }
+     ]
+   }
+
+### Endpoint
 ## Rodando a Aplicação
 
 No terminal, execute o comando para compilar e iniciar a aplicação:
