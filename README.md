@@ -43,16 +43,15 @@ Isso permitirá o envio do arquivo diretamente para a aplicação, que irá proc
 ## Obtendo Informações de Intervalos de Prêmios
 
 Você pode realizar uma requisição GET para obter o produtor com o maior intervalo entre dois prêmios consecutivos, e também o produtor que obteve dois prêmios mais rapidamente.
-   
-      ```bash
+   ```bash
    GET http://localhost:8080/awards/intervals
-
+   ```
 
 ### Retorno Esperado
 
 O retorno será um JSON similar ao seguinte:
 
-      ```json
+```json
    {
      "min": [
        {
@@ -83,7 +82,7 @@ O retorno será um JSON similar ao seguinte:
        }
      ]
    }
-
+```
 ### Endpoint
 ## Rodando a Aplicação
 
