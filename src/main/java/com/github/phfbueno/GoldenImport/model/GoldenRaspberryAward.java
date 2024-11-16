@@ -3,8 +3,8 @@ package com.github.phfbueno.GoldenImport.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.*;
 import jakarta.persistence.Id;
+import lombok.*;
 
 @Entity
 @Getter
@@ -26,6 +26,7 @@ public class GoldenRaspberryAward {
     private String producers;
     private Boolean winner;
 
-    public GoldenRaspberryAward(int i, String s, String s1, String s2, boolean b) {
+    public GoldenRaspberryAward(int i, String movie1, String studio1, String producerB, boolean b) {
     }
+
 }

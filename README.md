@@ -88,18 +88,18 @@ O retorno será um JSON similar ao seguinte:
 
 No terminal, execute o comando para compilar e iniciar a aplicação:
 
-    ```bash
-mvn spring-boot:run
-
+```bash
+      mvn spring-boot:run
+```
 A aplicação estará disponível em http://localhost:8080.
 
 ## Executando os Testes de Integração
 
 Para rodar os testes de integração, execute o comando:
 
-      ```bash
-   mvn test
-
+```bash
+      mvn test
+```
 Os testes de integração estão configurados para verificar o funcionamento dos endpoints e a importação dos dados no banco de dados.
 
 ## Observação

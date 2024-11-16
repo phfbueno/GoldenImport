@@ -14,11 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Slf4j
@@ -50,20 +48,24 @@ public class CsvDataLoaderService {
 
     public void loadCsvData() throws IOException {
 
-        String fullPath = Paths.get(filePath, fileName).toString();
+        String resourcePath = filePath + fileName;
 
-        File file = new File(fullPath);
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(resourcePath)) {
 
-        if (!file.exists()) {
-            logger.warn("Arquivo {} não encontrado. O sistema continuará sem importar os dados.", file.getPath());
-            return;
-        }
+            if (inputStream == null) {
+                logger.warn("Arquivo não encontrado no classpath: {}", resourcePath);
+                return;
+            }
 
-        try (FileReader reader = new FileReader(fullPath);
+            try (InputStreamReader reader = new InputStreamReader(inputStream);
+                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';').withHeader())) {
 
-             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';').withHeader())){
+                processGoldenRaspberryAwardsFromCSV(csvParser);
 
-             processGoldenRaspberryAwardsFromCSV(csvParser);
+            } catch (IOException e) {
+                logger.error("Erro ao processar o arquivo CSV: {}", e.getMessage());
+                throw e;
+            }
         }
     }
 

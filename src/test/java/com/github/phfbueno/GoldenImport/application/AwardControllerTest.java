@@ -32,7 +32,6 @@ public class AwardControllerTest {
     @MockBean
     private GoldenRaspberryAwardRepository goldenRaspberryAwardRepository;
 
-
     @Test
     public void shouldReturnProducersWithMinAndMaxIntervalsBetweenAwards() throws Exception {
         List<GoldenRaspberryAward> awards = List.of(
@@ -115,4 +114,5 @@ public class AwardControllerTest {
         Map<String, List<Map<String, Object>>> result = awardService.calculateAwardIntervals();
         assertThat(result).isEmpty();
     }
+
 }

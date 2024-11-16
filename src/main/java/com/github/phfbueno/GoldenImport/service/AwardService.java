@@ -23,8 +23,12 @@ public class AwardService {
             .collect(Collectors.toList());
 
         Map<String, List<GoldenRaspberryAward>> producerAwardsMap = new HashMap<>();
-        for(GoldenRaspberryAward award : awards) {
+        for (GoldenRaspberryAward award : awards) {
+
             Arrays.stream(award.getProducers().split(","))
+                    .map(String::trim)
+
+                    .flatMap(producer -> Arrays.stream(producer.split("and")))
                     .map(String::trim)
                     .forEach(producer -> producerAwardsMap.computeIfAbsent(producer, k -> new ArrayList<>()).add(award));
         }
@@ -38,8 +42,8 @@ public class AwardService {
             List<GoldenRaspberryAward> producerAwards = producerAwardsMap.get(producer);
             producerAwards.sort(Comparator.comparingInt(GoldenRaspberryAward::getYearMovie));
 
-            for (int i = 1; i < producerAwards.size() ; i++) {
-                int interval = producerAwards.get(i).getYearMovie() - producerAwards.get(i -1).getYearMovie();
+            for (int i = 1; i < producerAwards.size(); i++) {
+                int interval = producerAwards.get(i).getYearMovie() - producerAwards.get(i - 1).getYearMovie();
 
                 if (interval < minInterval){
                     minInterval = interval;
